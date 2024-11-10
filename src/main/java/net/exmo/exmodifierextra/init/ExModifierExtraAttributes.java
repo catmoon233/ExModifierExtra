@@ -26,7 +26,6 @@ import java.util.List;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ExModifierExtraAttributes {
 	public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, Exmodifierextra.MODID);
-	public static final RegistryObject<Attribute> BEHIND_DAMAGE = ATTRIBUTES.register("behind_damage", () -> (new RangedAttribute("attribute." + Exmodifierextra.MODID + ".behind_damage", 1, -100000000, 100000000)).setSyncable(true));
 
 	@SubscribeEvent
 	public static void register(FMLConstructModEvent event) {
@@ -41,7 +40,7 @@ public class ExModifierExtraAttributes {
 		entityTypes.forEach((e) -> {
 			Class<? extends Entity> baseClass = e.getBaseClass();
 			if (baseClass.isAssignableFrom(Mob.class)) {
-				event.add(e, BEHIND_DAMAGE.get());
+		//		event.add(e, BEHIND_DAMAGE.get());
 			}
 		});
 
@@ -53,7 +52,7 @@ public class ExModifierExtraAttributes {
 		public static void persistAttributes(PlayerEvent.Clone event) {
 			Player oldP = event.getOriginal();
 			Player newP = (Player) event.getEntity();
-			newP.getAttribute(BEHIND_DAMAGE.get()).setBaseValue(oldP.getAttribute(BEHIND_DAMAGE.get()).getBaseValue());
+			//newP.getAttribute(BEHIND_DAMAGE.get()).setBaseValue(oldP.getAttribute(BEHIND_DAMAGE.get()).getBaseValue());
 
 		}
 	}
